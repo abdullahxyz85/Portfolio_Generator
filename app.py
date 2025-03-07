@@ -1,13 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from openai import OpenAI
+from dotenv import load_dotenv  # Import the load_dotenv function
 import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 
 # Custom OpenAI client configuration
 client = OpenAI(
     base_url="https://api.aimlapi.com/v1",
-    api_key="a0f3e3d28d34455db9b2e3ca6b4ce3d9",  # Replace with your actual API key
+    api_key=os.getenv("OPENAI_API_KEY"),  # Get API key from .env file
 )
 
 # Home route
